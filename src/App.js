@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Unsplash, {toJson} from 'unsplash-js'
 
+import './css/main.css'
 import ImagePreview from './components/imagePreviews'
 
 
