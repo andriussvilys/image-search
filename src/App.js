@@ -2,11 +2,14 @@ import React from 'react';
 import './App.css';
 import Unsplash, {toJson} from 'unsplash-js'
 
+import ImagePreview from './components/imagePreviews'
+
 
 export default class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      images: []
     }
 
     this.Unsplash = require('unsplash-js').default;
@@ -21,6 +24,15 @@ export default class App extends React.Component{
         .then(toJson)
         .then(res => {
           console.log(res)
+          const imagePreviews = res.results.map((result, index) => {
+            return(
+              <ImagePreview
+                key={`${searchKeyword}-${index}`}
+                photo={result}
+              />
+            )
+          })
+          this.setState({images: imagePreviews})
         })
     }
     // .then(toJson)
@@ -35,14 +47,17 @@ export default class App extends React.Component{
         <section className="searchBar">
           <form>
             <input id="searchField" type="search" name="" defaultValue="" />
-            <input type="submit" value="Search" onClick={() => {
+            <input type="submit" value="Search" onClick={(e) => {
+              e.preventDefault()
               const keyword = document.getElementById("searchField").value
               this.searchImages(keyword)
             }}/>
           </form>
         </section>
   
-        <section className="searchResults"></section>
+        <section className="searchResults">
+            {this.state.images}
+        </section>
       </div>
     )
   }
