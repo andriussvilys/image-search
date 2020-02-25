@@ -9,7 +9,7 @@ const ImagePreview = (props) => {
             <img src={props.photo.urls.thumb} alt={props.photo.description} />
             <div className="photoPreview-attribution_wrapper">
                 <div className="photoPreview-attribution">
-                    <span>Photo by </span><a target="_blank" rel="noreferrer" href={`${props.photo.links.html}/${utm}`}><em>{props.photo.user.username}</em></a><span> on </span><a target="_blank" rel="noreferrer" href={`https://unsplash.com/${utm}`}><em>Unsplash</em></a>
+                    <span>Photo by </span><a target="_blank" rel="noopener noreferrer" href={`${props.photo.links.html}/${utm}`}><em>{props.photo.user.username}</em></a><span> on </span><a target="_blank" rel="noopener noreferrer" href={`https://unsplash.com/${utm}`}><em>Unsplash</em></a>
                 </div>
             </div>
         </div>

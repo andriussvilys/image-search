@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import Unsplash, {toJson} from 'unsplash-js'
+import Unsplash, {toJson} from 'unsplash-js';
+import { useSelector } from 'react-redux'
 
 import './css/main.css'
 import ImagePreview from './components/imagePreviews'
@@ -36,10 +36,6 @@ export default class App extends React.Component{
           this.setState({images: imagePreviews})
         })
     }
-    // .then(toJson)
-    // .then(json => {
-    //   console.log(json)
-    // });
   }
 
   render(){
@@ -47,7 +43,13 @@ export default class App extends React.Component{
       <div className="App">
         <section className="searchBar">
           <form>
-            <input id="searchField" type="search" name="" defaultValue="" />
+            <input 
+            id="searchField" 
+            type="search" 
+            name="" 
+            defaultValue="" 
+            placeholder={useSelector(state => state.query)}
+            />
             <input type="submit" value="Search" onClick={(e) => {
               e.preventDefault()
               const keyword = document.getElementById("searchField").value

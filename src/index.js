@@ -1,16 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './css/main.css';
 import App from './App';
+import { createStore } from 'redux';
+import combinedReducers from './redux/reducers/combinedReducers';
+import { Provider } from 'react-redux'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//ACTION
+const query = () => {
+    return{
+        type: 'QUERY'
+    }
+}
 
-// if(module.hot){
-//     module.hot.accept('./App', () => {
-//         const NextApp = require('./App').default;
-//         ReactDOM.render(
-//             <NextApp/>,
-//             document.getElementById('root')
-//         )
-//     })
-// }
+//REDUCER
+
+const store = createStore(combinedReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+//display in console
+store.subscribe(() => {
+    console.log(store.getState())
+})
+
+//DISPATCH
+store.dispatch(query())
+
+
+ReactDOM.render(
+<Provider store={store}>
+    <App />
+</Provider>,
+document.getElementById('root')
+);
