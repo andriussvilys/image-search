@@ -1,8 +1,8 @@
-import query from './query'
+import search from './search'
 import { combineReducers } from 'redux'
 
 const combined = combineReducers({
-    "query": query
+    "photos": search
 })
 
 export default combined

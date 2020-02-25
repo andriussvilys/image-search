@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ImagePreview = (props) => {
-    console.log("imagePreview props")
+    console.log("ImagePreview props")
     console.log(props.photo)
     const utm = "?utm_source=your_app_name&utm_medium=referral"
     return(
