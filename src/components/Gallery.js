@@ -10,7 +10,8 @@ const Gallery = (props) => {
     console.log(props.photos.error)
         return(
             <div className="gallery">
-                <div className="gallery-message">
+                {/* <div className="gallery-message"> */}
+                <div className={`gallery-message ${props.photos.error | props.photos.loading ? "gallery-message_display" : ""}`}>
                     <p>{props.photos.error ? props.photos.error : ""}</p>
                 </div>
                     <div className="searchResults">

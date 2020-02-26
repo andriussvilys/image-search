@@ -31,36 +31,36 @@ html, body, #root {
   cursor: pointer;
   display: inline-block;
   padding: 0 15px;
+  height: 100%;
 }
 
 .searchBar-wrapper {
-  height: 50px;
-  max-height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
+  display: flex;
 }
 
-.searchBar-wrapper * {
-  height: 100%;
-}
-
-.searchBar-wrapper .searchField-form {
+.searchField-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
 }
 
-.searchBar-wrapper .searchField-input {
+.searchField-input {
+  height: 50px;
   width: 66vw;
-  font-size: 35px;
+  font-size: 2vw;
   text-transform: uppercase;
   border: 2px solid black;
+  padding-left: 3px;
 }
 
-.searchBar-wrapper .searchField-button {
+.searchField-button {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -68,20 +68,26 @@ html, body, #root {
   width: 50%;
 }
 
-.searchBar-wrapper .searchBar-buttons-wrapper {
+.searchBar-buttons-wrapper {
   margin-left: 20px;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
 }
 
 .main {
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .savedQueries-wrapper {
@@ -90,10 +96,12 @@ html, body, #root {
       -ms-flex: 1;
           flex: 1;
   padding: 0 0 0 20px;
+  z-index: 3;
 }
 
 .savedQueries-results {
   border: 1px solid black;
+  background-color: white;
   border-radius: 4vw;
   height: 100%;
   padding: 4vw 3vw;
@@ -101,6 +109,8 @@ html, body, #root {
 
 .savedQueries-results ul {
   list-style: none;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .savedQueries-button {
@@ -110,19 +120,27 @@ html, body, #root {
 }
 
 .gallery {
-  border: 1px solid red;
+  border: 1px solid black;
   width: 66vw;
   position: relative;
+  overflow-y: auto;
 }
 
 .gallery-message {
   height: 50px;
   width: 100%;
+  height: 100%;
   background-color: yellow;
   position: absolute;
   top: -100%;
   -webkit-transition: top 0.2s;
   transition: top 0.2s;
+  z-index: 2;
+  opacity: 0.8;
+}
+
+.gallery-message_display {
+  top: 0;
 }
 
 .searchResults {
@@ -136,7 +154,6 @@ html, body, #root {
 .photoPreview-container {
   position: relative;
   overflow: hidden;
-  border: 1px solid red;
   max-height: 25vh;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 25%;
@@ -183,5 +200,53 @@ html, body, #root {
 
 .photoPreview-container:hover .photoPreview-attribution_wrapper {
   bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .button, .searchField-input {
+    font-size: 4vw;
+  }
+  .searchBar-wrapper {
+    margin-bottom: 5px;
+  }
+  .searchBar-buttons-wrapper {
+    margin-left: 3px;
+  }
+  .searchField-button {
+    width: auto;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+  .searchField-input {
+    width: initial;
+    -webkit-box-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+  }
+  .savedQueries-button {
+    min-height: 40px;
+    margin-bottom: 5px;
+  }
+  .gallery {
+    width: 100%;
+  }
+  .savedQueries-wrapper {
+    width: 50%;
+    -webkit-transition: 0.4s right;
+    transition: 0.4s right;
+    position: absolute;
+    right: -100%;
+    padding: 5px;
+  }
+  .savedQueries-wrapper_display {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .searchBar-buttons-wrapper {
+    margin: 5px 0 0 0;
+  }
 }
 /*# sourceMappingURL=main.css.map */

@@ -10,7 +10,7 @@ const SavedQueries = (props) => {
     console.log(props)
     console.log("store")
     return(
-            <div className="savedQueries-wrapper">
+            <div className="savedQueries-wrapper" id="savedQueries">
                 <div className="savedQueries-results">
                     <ul>
                         {

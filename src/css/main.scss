@@ -26,58 +26,65 @@ $buttonFontSize: 2vw;
     cursor: pointer;
     display: inline-block;
     padding: 0 15px;
+    height: 100%;
 }
 //SEARCH BAR
 .searchBar-wrapper{
-    height: $buttonHeight;
-    max-height: $buttonHeight;
     display: flex;
     margin-bottom: 20px;
-    *{
-        height: 100%;
-    }
-    .searchField-form{
-        display: flex;
-        width: 100%;
-    }
-    .searchField-input{
-        width: 66vw;
-        font-size: 35px;
-        text-transform: uppercase;
-        border: 2px solid black;
-    }
-    .searchField-button{
-        flex: 1;
-        font-weight: 600;
-        width: 50%;
-    }
-    .searchBar-buttons-wrapper{
-        margin-left: 20px;
-        flex: 1;
-        border: 1px solid black;
-    }
+    display: flex;
+}
+.searchField-form{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.searchField-input{
+    height: 50px;
+    width: 66vw;
+    font-size: $buttonFontSize;
+    text-transform: uppercase;
+    border: 2px solid black;
+    padding-left: 3px;
+}
+.searchField-button{
+    flex: 1;
+    font-weight: 600;
+    width: 50%;
+}
+.searchBar-buttons-wrapper{
+    margin-left: 20px;
+    flex: 1;
+    border: 1px solid black;
+    display: flex;
+    height: 50px;
 }
 
 //SEARCH RESULTS
 .main{
+    overflow: hidden;
     display: flex;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 //SAVED QUERIES
 .savedQueries-wrapper{
-    // border: 1px solid black;
     height: 100%;
     flex: 1;
     padding: 0 0 0 20px;
+    z-index: 3;
 }
 .savedQueries-results{
     border: 1px solid black;
+    background-color: white;
     border-radius: 4vw;
     height: 100%;
     padding: 4vw 3vw;
     ul{
         list-style: none;
+        overflow-y: auto;
+        height: 100%;
     }
 }
 .savedQueries-button{
@@ -88,17 +95,24 @@ $buttonFontSize: 2vw;
 
 //GALLERY
 .gallery{
-    border: 1px solid red;
+    border: 1px solid black;
     width: 66vw;
     position: relative;
+    overflow-y: auto;
 }
 .gallery-message{
     height: 50px;
     width: 100%;
+    height: 100%;
     background-color: yellow;
     position: absolute;
     top: -100%;
     transition: top 0.2s;
+    z-index: 2;
+    opacity: 0.8;
+}
+.gallery-message_display{
+    top: 0;
 }
 .searchResults{
     display: flex;
@@ -107,7 +121,7 @@ $buttonFontSize: 2vw;
 .photoPreview-container{
     position: relative;
     overflow: hidden;
-    border: 1px solid red;
+    // border: 1px solid red;
     max-height: 25vh;
     flex: 1 1 25%;
 }
@@ -141,5 +155,45 @@ $buttonFontSize: 2vw;
 
 
 @media screen and (max-width: 768px){
+    .button, .searchField-input{
+        font-size: 4vw;
+    }
+    .searchBar-wrapper{
+        margin-bottom: 5px;
+    }
+    .searchBar-buttons-wrapper{
+        margin-left: 3px;
+    }
+    .searchField-button{
+        width: auto;
+        flex: 1;
+    }
+    .searchField-input{
+        width: initial;
+        flex: 2;
+    }
+    .savedQueries-button{
+        min-height: 40px;
+        margin-bottom: 5px;
+    }
+    .gallery{
+        width: 100%;
+    }
+    .savedQueries-wrapper{
+        width: 50%;
+        transition: 0.4s right;
+        position: absolute;
+        right: -100%;
+        padding: 5px;
+    }
+    .savedQueries-wrapper_display{
+        right: 0;
+    }
 
+}
+
+@media screen and (max-width: 468px){
+    .searchBar-buttons-wrapper{
+        margin: 5px 0 0 0;
+    }
 }

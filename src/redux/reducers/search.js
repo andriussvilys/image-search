@@ -47,7 +47,7 @@ const saveQuery = (state = initialState, action) => {
                         ...state.photos,
                         [action.queryKeyword]: action.payload
                     },
-                    error: action.error,
+                    error: null,
                     loading: false,
                     savedQueries: [...state.savedQueries, state.query]
                 }
@@ -61,7 +61,8 @@ const saveQuery = (state = initialState, action) => {
         case "QUERY_LOAD_SAVED":
                 return {
                     ...state, 
-                    onDisplay: state.photos[action.query]
+                    onDisplay: state.photos[action.query],
+                    error: null
                 }
         default: return state
     }
