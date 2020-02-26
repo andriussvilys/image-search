@@ -7,20 +7,35 @@ const SearchBar = (props) => {
 
     const dispatch = useDispatch()
 
+    const search = (e) => {
+        e.preventDefault()
+        const keyword = document.getElementById("searchField").value
+        dispatch(queryActions.queryRequest(keyword))
+    }
+
     return(
-        <form>
-            <input 
-                id="searchField" 
-                type="search" 
-                name="" 
-                defaultValue="" 
-            />
-            <input type="submit" value="Search" onClick={(e) => {
-                e.preventDefault()
-                const keyword = document.getElementById("searchField").value
-                dispatch(queryActions.queryRequest(keyword))
-            }}/>
-      </form>
+        <div className="searchBar-wrapper">
+            <form className="searchField-form">
+                    <input 
+                        className="searchField-input"
+                        id="searchField" 
+                        type="search" 
+                        name="" 
+                        defaultValue="" 
+                        onSubmit={e => alert(e)}
+                    />
+                <div className="searchBar-buttons-wrapper">
+                    <input 
+                        className="searchField-button button"
+                        htmlFor="searchField" 
+                        type="submit" 
+                        value="Search" 
+                        onClick={(e) => search(e)}
+                    />
+                    {props.children}
+                </div>
+          </form>
+        </div>
     )
 }
 

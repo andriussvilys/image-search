@@ -1,27 +1,23 @@
 import React from 'react';
-import Unsplash, {toJson} from 'unsplash-js';
-import { useSelector } from 'react-redux'
 
-import './css/main.css'
-import SearchBar from './components/SearchBar'
-import Gallery from './components/Gallery'
+import './css/main.css';
+import SearchBar from './components/SearchBar';
+import Gallery from './components/Gallery';
 import SavedQueries from './components/SavedQueries';
+import SaveButton from './components/SaveButton';
 
 
 const App = (props) => {
 
     return (
       <div className="App">
-        <div className="search">
-          <section className="searchBar">
-            <SearchBar />
-          </section>
-    
-          <section className="searchResults">
-              <Gallery />
-          </section>
-        </div>
+            <SearchBar>
+              <SaveButton />
+            </SearchBar>
+        <section className="main">    
+            <Gallery />
             <SavedQueries />
+        </section>
       </div>
     )
   }

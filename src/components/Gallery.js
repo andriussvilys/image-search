@@ -5,33 +5,25 @@ import ImagePreview from './ImagePreview'
 
 const Gallery = (props) => {
     const queryKeyword = props.photos.query
-    // const queryResult = props.photos.photos[props.photos.query]
-    // return(
-    //     queryKeyword && queryResult ? 
-    //         queryResult.map((photo, index) => {
-    //             return <ImagePreview 
-    //                         key={index}
-    //                         photo={photo}
-    //                     />
-    //         })
-    //         :
-    //         props.photos.error ?
-    //             <p>{props.photos.error}</p> :
-    //         null
-    // )
     const queryResult = props.photos.onDisplay
+    console.log("props.photos.error")
+    console.log(props.photos.error)
         return(
-        queryKeyword && queryResult ? 
-            queryResult.map((photo, index) => {
-                return <ImagePreview 
-                            key={index}
-                            photo={photo}
-                        />
-            })
-            :
-            props.photos.error ?
-                <p>{props.photos.error}</p> :
-            null
+            <div className="gallery">
+                    <p>{props.photos.error ? props.photos.error : ""}</p>
+                    <div className="searchResults">
+                        {
+                            queryKeyword && queryResult ? 
+                                queryResult.map((photo, index) => {
+                                    return <ImagePreview 
+                                                key={index}
+                                                photo={photo}
+                                            />
+                                }) :
+                                null
+                        }
+                    </div>
+            </div>
     )
 }
 

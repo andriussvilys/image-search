@@ -52,8 +52,6 @@ const saveQuery = () => {
     return dispatch => {
         dispatch({
             type: "QUERY_SAVE",
-            error: null,
-            loading: true
         })
     }
 }
@@ -62,8 +60,6 @@ const loadSaved = (query) => {
     return dispatch => {
         dispatch({
             type: "QUERY_LOAD_SAVED",
-            error: null,
-            loading: true,
             query: query
         })
     }

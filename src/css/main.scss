@@ -5,27 +5,92 @@ html, body, #root{
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 .App{
     display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+//VARIABLES
+$buttonHeight: 50px;
+$buttonFontSize: 2vw;
+//COMMON CLASSES
+.button{
+    height: $buttonHeight;
+    font-size: $buttonFontSize;
+    text-transform: uppercase;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 15px;
+}
+//SEARCH BAR
+.searchBar-wrapper{
+    height: $buttonHeight;
+    max-height: $buttonHeight;
+    display: flex;
+    margin-bottom: 20px;
+    *{
+        height: 100%;
+    }
+    .searchField-form{
+        display: flex;
+        width: 100%;
+    }
+    .searchField-input{
+        width: 66vw;
+        font-size: 35px;
+        text-transform: uppercase;
+        border: 2px solid black;
+        margin-right: 4px;
+    }
+    .searchField-button{
+        flex: 1;
+        font-weight: 600;
+        width: 50%;
+    }
+    .searchBar-buttons-wrapper{
+        margin-left: 15px;
+        flex: 1;
+        border: 1px solid black;
+    }
+}
+
+//SEARCH RESULTS
+.main{
+    display: flex;
+    width: 100%;
     height: 100%;
 }
-.search{
-    width: 66%;
-    border: 1px solid black;
-}
+//SAVED QUERIES
 .savedQueries-wrapper{
-    min-width: 33%;
-    border: 1px solid black;
+    // border: 1px solid black;
     height: 100%;
+    flex: 1;
+    padding: 0 0 0 20px;
 }
 .savedQueries-results{
-    width: 100%;
-    margin: 10px;
+    border: 1px solid black;
+    border-radius: 35px;
+    height: 100%;
+    padding: 35px;
+    ul{
+        list-style: none;
+    }
 }
 .savedQueries-button{
-    width: 100px;
-    height: 30px;
+    width: 100%;
+    margin-bottom: 15px;
+    height: auto;
+}
+
+//GALLERY
+.gallery{
+    border: 1px solid red;
+    width: 66vw;
 }
 .searchResults{
     display: flex;
@@ -35,9 +100,12 @@ html, body, #root{
     position: relative;
     overflow: hidden;
     border: 1px solid red;
+    max-height: 25vh;
+    flex: 1 1 25%;
 }
 .photoPreview-container img{
     height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 .photoPreview-attribution_wrapper{

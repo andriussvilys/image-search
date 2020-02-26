@@ -10,36 +10,28 @@ const SavedQueries = (props) => {
     console.log(props)
     console.log("store")
     return(
-        <div className="savedQueries-wrapper">
-
-            <button className="savedQueries-button"
-                onClick={() => {
-                    dispatch(queryActions.saveQuery())
-                }}
-            >
-                SAVE
-            </button>
-
-            <div className="savedQueries-results">
-                <ul>
-                    {
-                        props.queries.savedQueries ?
-                            props.queries.savedQueries.map(query => {
-                                return  <li key={`savedQuer-${query}`}>
-                                            <button
-                                                onClick={() => {
-                                                    dispatch(queryActions.loadSaved(query))
-                                                }}
-                                            >
-                                                {query}
-                                            </button>
-                                        </li>
-                            }) :
-                            null
-                    }
-                </ul>
+            <div className="savedQueries-wrapper">
+                <div className="savedQueries-results">
+                    <ul>
+                        {
+                            props.queries.savedQueries ?
+                                props.queries.savedQueries.map(query => {
+                                    return  <li key={`savedQuer-${query}`}>
+                                                <button
+                                                    className={"savedQueries-button button"}
+                                                    onClick={() => {
+                                                        dispatch(queryActions.loadSaved(query))
+                                                    }}
+                                                >
+                                                    {query}
+                                                </button>
+                                            </li>
+                                }) :
+                                null
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
     )
 }
 

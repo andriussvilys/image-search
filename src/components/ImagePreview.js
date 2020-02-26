@@ -1,8 +1,6 @@
 import React from 'react'
 
 const ImagePreview = (props) => {
-    console.log("ImagePreview props")
-    console.log(props.photo)
     const utm = "?utm_source=image-search&utm_medium=referral"
     return(
         <div className="photoPreview-container">

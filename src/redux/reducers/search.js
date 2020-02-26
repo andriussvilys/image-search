@@ -1,4 +1,3 @@
-import { toJson } from 'unsplash-js'
 
 const initialState = {
     photos: {},
@@ -16,7 +15,6 @@ const saveQuery = (state = initialState, action) => {
                 ...state, 
                 loading: true
             }
-            break;
         case "QUERY_SUCCESS":
             return {
                 ...state, 
@@ -29,7 +27,6 @@ const saveQuery = (state = initialState, action) => {
                 query: action.queryKeyword,
                 onDisplay: action.payload
             }
-            break;
         case "QUERY_FAILURE":
             return {
                 ...state, 
@@ -39,11 +36,11 @@ const saveQuery = (state = initialState, action) => {
                 },
                 error: action.error,
                 loading: false,
-                query: action.queryKeyword
+                query: action.queryKeyword,
+                onDisplay: []
             }
-            break;
         case "QUERY_SAVE":
-            if(!state.savedQueries.includes(state.query)){
+            if(!state.savedQueries.includes(state.query) && state.onDisplay.length > 0){
                 return {
                     ...state, 
                     photos: {
@@ -55,15 +52,17 @@ const saveQuery = (state = initialState, action) => {
                     savedQueries: [...state.savedQueries, state.query]
                 }
             }
-            return state
-            break;
+            else{
+                return{
+                    ...state,
+                    error: "Nothing to save"
+                }
+            }
         case "QUERY_LOAD_SAVED":
                 return {
                     ...state, 
                     onDisplay: state.photos[action.query]
                 }
-            return state
-            break;
         default: return state
     }
 }
