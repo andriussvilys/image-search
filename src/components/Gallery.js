@@ -4,23 +4,25 @@ import { connect } from 'react-redux'
 import ImagePreview from './ImagePreview'
 
 const Gallery = (props) => {
+    const queryKeyword = props.photos.query
+    const queryResult = props.photos.photos[props.photos.query]
     return(
-            props.photos ? 
-                props.photos.map((photo, index) => {
-                    console.log("photo")
-                    console.log(photo)
-                    return <ImagePreview 
-                                key={index}
-                                photo={photo}
-                            />
-                })
-                :
-                null
+        queryKeyword && queryResult ? 
+            queryResult.map((photo, index) => {
+                return <ImagePreview 
+                            key={index}
+                            photo={photo}
+                        />
+            })
+            :
+            props.photos.error ?
+                <p>{props.photos.error}</p> :
+            null
     )
 }
 
 const mapStateToProps = state => ({
-    photos: state.photos.photos
+    photos: state.queries
 })
 
 export default connect(mapStateToProps, {})(Gallery) 
