@@ -45,7 +45,6 @@ $buttonFontSize: 2vw;
         font-size: 35px;
         text-transform: uppercase;
         border: 2px solid black;
-        margin-right: 4px;
     }
     .searchField-button{
         flex: 1;
@@ -53,7 +52,7 @@ $buttonFontSize: 2vw;
         width: 50%;
     }
     .searchBar-buttons-wrapper{
-        margin-left: 15px;
+        margin-left: 20px;
         flex: 1;
         border: 1px solid black;
     }
@@ -74,9 +73,9 @@ $buttonFontSize: 2vw;
 }
 .savedQueries-results{
     border: 1px solid black;
-    border-radius: 35px;
+    border-radius: 4vw;
     height: 100%;
-    padding: 35px;
+    padding: 4vw 3vw;
     ul{
         list-style: none;
     }
@@ -91,6 +90,15 @@ $buttonFontSize: 2vw;
 .gallery{
     border: 1px solid red;
     width: 66vw;
+    position: relative;
+}
+.gallery-message{
+    height: 50px;
+    width: 100%;
+    background-color: yellow;
+    position: absolute;
+    top: -100%;
+    transition: top 0.2s;
 }
 .searchResults{
     display: flex;
@@ -129,4 +137,9 @@ $buttonFontSize: 2vw;
 }
 .photoPreview-container:hover .photoPreview-attribution_wrapper{
     bottom: 0;
+}
+
+
+@media screen and (max-width: 768px){
+
 }

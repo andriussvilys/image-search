@@ -10,7 +10,9 @@ const Gallery = (props) => {
     console.log(props.photos.error)
         return(
             <div className="gallery">
+                <div className="gallery-message">
                     <p>{props.photos.error ? props.photos.error : ""}</p>
+                </div>
                     <div className="searchResults">
                         {
                             queryKeyword && queryResult ? 
