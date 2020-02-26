@@ -1,3 +1,32 @@
+html, body, #root{
+    height: 100%;
+    width: 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.App{
+    display: flex;
+    height: 100%;
+}
+.search{
+    width: 66%;
+    border: 1px solid black;
+}
+.savedQueries-wrapper{
+    min-width: 33%;
+    border: 1px solid black;
+    height: 100%;
+}
+.savedQueries-results{
+    width: 100%;
+    margin: 10px;
+}
+.savedQueries-button{
+    width: 100px;
+    height: 30px;
+}
 .searchResults{
     display: flex;
     flex-wrap: wrap;

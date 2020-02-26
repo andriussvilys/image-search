@@ -19,7 +19,6 @@ const queryRequest = (value) => {
             return unsplash.search.photos(value, 1, 10, { orientation: "portrait" })
                   .then(toJson)
                   .then(res => {
-                    console.log(res)
                     if(res.results.length > 0){
                         dispatch({
                             type: "QUERY_SUCCESS",
@@ -37,19 +36,45 @@ const queryRequest = (value) => {
                         })
                     }
                   })
-                  .catch(rej => {console.log("request rejected"); return(
-                      dispatch({
-                        type: "QUERY_FAILURE",
-                        queryKeyword: value,
-                        error: "Your query returned no results. Please try a different keyword"
-                    })
-                  )
-            })
+                  .catch(rej => {
+                      return(
+                        dispatch({
+                          type: "QUERY_FAILURE",
+                          queryKeyword: value,
+                          error: "Your query returned no results. Please try a different keyword"
+                      })
+                    )
+                  })
+            }
+    }
+
+const saveQuery = () => {
+    return dispatch => {
+        dispatch({
+            type: "QUERY_SAVE",
+            error: null,
+            loading: true
+        })
     }
 }
 
+const loadSaved = (query) => {
+    return dispatch => {
+        dispatch({
+            type: "QUERY_LOAD_SAVED",
+            error: null,
+            loading: true,
+            query: query
+        })
+    }
+}
+
+const updateQuery = () => {
+
+}
+
 const queryActions = {
-    queryRequest
+    queryRequest, saveQuery, loadSaved
 }
 
 export default queryActions

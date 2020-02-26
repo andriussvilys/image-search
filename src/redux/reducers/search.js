@@ -4,7 +4,9 @@ const initialState = {
     photos: {},
     error: null,
     loading: false,
-    query: null
+    query: null,
+    savedQueries: [],
+    onDisplay: []
 }
 
 const saveQuery = (state = initialState, action) => {
@@ -24,7 +26,8 @@ const saveQuery = (state = initialState, action) => {
                 },
                 error: null,
                 loading: false,
-                query: action.queryKeyword
+                query: action.queryKeyword,
+                onDisplay: action.payload
             }
             break;
         case "QUERY_FAILURE":
@@ -39,7 +42,31 @@ const saveQuery = (state = initialState, action) => {
                 query: action.queryKeyword
             }
             break;
+        case "QUERY_SAVE":
+            if(!state.savedQueries.includes(state.query)){
+                return {
+                    ...state, 
+                    photos: {
+                        ...state.photos,
+                        [action.queryKeyword]: action.payload
+                    },
+                    error: action.error,
+                    loading: false,
+                    savedQueries: [...state.savedQueries, state.query]
+                }
+            }
+            return state
+            break;
+        case "QUERY_LOAD_SAVED":
+                return {
+                    ...state, 
+                    onDisplay: state.photos[action.query]
+                }
+            return state
+            break;
         default: return state
     }
 }
+
+
 export default saveQuery
