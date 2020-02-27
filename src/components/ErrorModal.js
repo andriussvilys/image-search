@@ -1,35 +1,37 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
 import toggleModal from '../redux/actions/modalToggle'
-import Spinner from './Spinner'
+import Loader from './Loader'
 
 const ErrorModal = (props) => {
+    console.log("ERORR MODAL")
+    console.log(props)
     const dispatch = useDispatch()
     return(
-        <div id="errorModal" className={`modal-wrapper ${props.photos.error || props.photos.loading ? "modal-message_display" : ""}`}>
+        <div id="errorModal" className={`modal-wrapper ${props.customClass ? props.customClass : ""} ${props.message || props.loading ? "modal-message_display" : ""}`}>
             {
-                props.photos.error ? 
+                props.message ? 
                     <div className="modal-box">
-                        <p>{props.photos.error ? props.photos.error : ""}</p>
+                        <p>{props.message ? props.message : ""}</p>
                         {
-                            props.photos.error ? 
-                            <button className="button modal-button"
-                                onClick={(e) => {
-                                    dispatch(toggleModal(false))
-                                }}
-                            >OKAY
-                            </button>
+                            props.message ? 
+                            <div>
+                                {props.children}
+                            </div>
                             : null
                         }
                     </div>
-                    : <Spinner />
+                    : props.loading ?
+                    <Loader />
+                    : null
             }
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    photos: state.queries
-})
+// const mapStateToProps = state => ({
+//     photos: state.queries
+// })
 
-export default connect(mapStateToProps, {})(ErrorModal) 
+// export default connect(mapStateToProps, {})(ErrorModal) 
+export default ErrorModal

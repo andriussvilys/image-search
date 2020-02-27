@@ -175,6 +175,40 @@ html, body, #root {
   height: 100%;
 }
 
+.loader-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loader-bar {
+  height: 10px;
+  width: 80%;
+  position: relative;
+}
+
+.loader-length {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.loader-progress {
+  position: absolute;
+  height: 100%;
+  background-color: blue;
+}
+
 .searchBar-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -261,8 +295,9 @@ html, body, #root {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  padding: 0 0 0 20px;
+  margin-left: 20px;
   z-index: 3;
+  position: relative;
 }
 
 .savedQueries-results {
@@ -271,12 +306,15 @@ html, body, #root {
   border-radius: 4vw;
   height: 100%;
   padding: 4vw 3vw;
+  position: relative;
+  overflow: hidden;
 }
 
 .savedQueries-results ul {
   list-style: none;
   overflow-y: auto;
   height: 100%;
+  overflow-y: auto;
 }
 
 .savedQueries-button {
@@ -304,6 +342,7 @@ html, body, #root {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  left: 0;
 }
 
 .modal-message_display {
@@ -314,13 +353,19 @@ html, body, #root {
   background-color: white;
   border: 2px solid black;
   padding: 10px;
-  width: 50%;
+  width: auto;
+  min-width: 50%;
+  max-width: 90%;
 }
 
 .modal-button {
   height: 50px;
   width: 100%;
   margin-top: 15px;
+}
+
+.savedQueries-modal {
+  border-radius: 4vw;
 }
 
 .gallery {
@@ -341,10 +386,11 @@ html, body, #root {
 .photoPreview-container {
   position: relative;
   overflow: hidden;
-  max-height: 25vh;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 25%;
           flex: 1 1 25%;
+  max-width: 24%;
+  margin: 2px;
 }
 
 .photoPreview-container img {
@@ -352,6 +398,7 @@ html, body, #root {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  color: rgba(255, 255, 255, 0);
 }
 
 .photoPreview-attribution_wrapper {
@@ -371,6 +418,7 @@ html, body, #root {
   background-color: rgba(0, 0, 0, 0.8);
   -webkit-transition: 0.4s all;
   transition: 0.4s all;
+  padding: 5px;
 }
 
 .photoPreview-attribution * {
@@ -424,6 +472,12 @@ html, body, #root {
   .gallery {
     width: 100%;
   }
+  .photoPreview-container {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 33%;
+            flex: 1 1 33%;
+    max-width: 32%;
+  }
   .savedQueries-wrapper {
     width: 50%;
     -webkit-transition: 0.4s right;
@@ -446,10 +500,16 @@ html, body, #root {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 100%;
             flex: 1 1 100%;
-    margin: 5px 0 0 0;
+    margin: 0;
   }
   .searchField-button {
     margin-left: 0;
+  }
+  .photoPreview-container {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    max-width: 100%;
   }
 }
 /*# sourceMappingURL=main.css.map */

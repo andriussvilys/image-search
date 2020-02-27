@@ -47,10 +47,24 @@ const queryRequest = (value) => {
             }
     }
 
-const saveQuery = () => {
+const saveQueryRequest = () => {
     return dispatch => {
         dispatch({
-            type: "QUERY_SAVE",
+            type: "QUERY_SAVE_REQUEST",
+        })
+    }
+}
+const saveQueryCancel = () => {
+    return dispatch => {
+        dispatch({
+            type: "QUERY_SAVE_CANCEL",
+        })
+    }
+}
+const saveQueryConfirm = () => {
+    return dispatch => {
+        dispatch({
+            type: "QUERY_SAVE_CONFIRM",
         })
     }
 }
@@ -69,7 +83,7 @@ const updateQuery = () => {
 }
 
 const queryActions = {
-    queryRequest, saveQuery, loadSaved
+    queryRequest, saveQueryRequest, saveQueryCancel, saveQueryConfirm, loadSaved
 }
 
 export default queryActions
