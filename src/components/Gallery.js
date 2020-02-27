@@ -1,16 +1,29 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 
 import ImagePreview from './ImagePreview'
 import ErrorModal from './ErrorModal'
+import toggleModal from '../redux/actions/modalToggle'
 
 const Gallery = (props) => {
+    const dispatch = useDispatch()
     const queryKeyword = props.photos.query
     const queryResult = props.photos.onDisplay
         return(
             <div className="gallery">
-                <ErrorModal />
-                {/* <div className="gallery-message"> */}
+                
+                <ErrorModal 
+                    message={props.photos.error}
+                    loading={props.photos.loading}
+                >
+                    <button className="button modal-button"
+                        onClick={(e) => {
+                            dispatch(toggleModal(false))
+                        }}
+                    >OKAY
+                    </button>    
+                </ErrorModal>
+
                     <div className="searchResults">
                         {
                             queryKeyword && queryResult ? 

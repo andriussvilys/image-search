@@ -6,7 +6,8 @@ const initialState = {
     query: null,
     savedQueries: [],
     onDisplay: [],
-    loadProgress: 0
+    loadProgress: 0,
+    savePrompt: null
 }
 
 const saveQuery = (state = initialState, action) => {
@@ -45,33 +46,47 @@ const saveQuery = (state = initialState, action) => {
                 loadProgress: 0,
                 onDisplay: []
             }
-        case "QUERY_SAVE":
+        case "QUERY_SAVE_REQUEST":
             if(!state.savedQueries.includes(state.query) && state.onDisplay.length > 0){
                 return {
                     ...state, 
-                    photos: {
-                        ...state.photos,
-                        [action.queryKeyword]: action.payload
-                    },
-                    error: null,
-                    loading: false,
-                    loadProgress: 0,
-                    savedQueries: [...state.savedQueries, state.query]
+                    savePrompt: `Do you want to save "${state.query}" to favourites?`
                 }
             }
             else if(state.savedQueries.includes(state.query)){
                 return{
                     ...state,
                     loadProgress: 0,
-                    error: `"${state.query}" is already recorded`
+                    savePrompt: `"${state.query}" is already recorded`
                 }
             }
             else{
                 return{
                     ...state,
                     loadProgress: 0,
-                    error: "Nothing to save"
+                    savePrompt: "Nothing to save"
                 }
+            }
+        case "QUERY_SAVE_CONFIRM":
+                if(!state.savedQueries.includes(state.query) && state.onDisplay.length > 0){
+                    return {
+                        ...state, 
+                        photos: {
+                            ...state.photos,
+                            [action.queryKeyword]: action.payload
+                        },
+                        error: null,
+                        loading: false,
+                        loadProgress: 0,
+                        savedQueries: [...state.savedQueries, state.query],
+                        savePrompt: null
+                    }
+                }
+
+        case "QUERY_SAVE_CANCEL": 
+            return {
+                ...state,
+                savePrompt: null
             }
         case "QUERY_LOAD_SAVED":
                 return {

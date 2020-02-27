@@ -25,7 +25,7 @@ const SaveButton = (props) => {
                         if(mobile()){
                             document.getElementById("savedQueries").classList.add("savedQueries-wrapper_display")
                         }
-                    dispatch(queryActions.saveQuery())
+                    dispatch(queryActions.saveQueryRequest())
                 }}
             >
                 <span>SAVE</span>
