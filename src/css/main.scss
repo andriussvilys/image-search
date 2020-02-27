@@ -30,6 +30,31 @@ $buttonFontSize: 2vw;
     padding: 0 15px;
     height: 100%;
 }
+//LOADER 
+.loader-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.loader-bar{
+    height: 10px;
+    width: 80%;
+    position: relative;
+}
+.loader-length{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+.loader-progress{
+    position: absolute;
+    height: 100%;
+    background-color: blue;
+    // transition: 0.4s width;
+}
 //SEARCH BAR
 .searchBar-wrapper{
     display: flex;
@@ -166,6 +191,7 @@ $buttonFontSize: 2vw;
     height: 100%;
     width: 100%;
     object-fit: cover;
+    color: rgba($color: #ffffff, $alpha: 0);
 }
 .photoPreview-attribution_wrapper{
     position: absolute;

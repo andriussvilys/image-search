@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
 import toggleModal from '../redux/actions/modalToggle'
-import Spinner from './Spinner'
+import Loader from './Loader'
 
 const ErrorModal = (props) => {
     const dispatch = useDispatch()
@@ -22,7 +22,9 @@ const ErrorModal = (props) => {
                             : null
                         }
                     </div>
-                    : <Spinner />
+                    // : <Spinner />
+                    : 
+                    <Loader />
             }
         </div>
     )
