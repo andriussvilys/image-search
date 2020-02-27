@@ -7,7 +7,8 @@ const initialState = {
     savedQueries: [],
     onDisplay: [],
     loadProgress: 0,
-    savePrompt: null
+    savePrompt: null,
+    burgerActive: false
 }
 
 const saveQuery = (state = initialState, action) => {
@@ -19,6 +20,7 @@ const saveQuery = (state = initialState, action) => {
             return {
                 ...state, 
                 loading: true,
+                burgerActive: false,
                 loadProgress: 0
             }
         case "QUERY_SUCCESS":
@@ -50,6 +52,7 @@ const saveQuery = (state = initialState, action) => {
             if(!state.savedQueries.includes(state.query) && state.onDisplay.length > 0){
                 return {
                     ...state, 
+                    burgerActive: true,
                     savePrompt: `Do you want to save "${state.query}" to favourites?`
                 }
             }
@@ -57,6 +60,7 @@ const saveQuery = (state = initialState, action) => {
                 return{
                     ...state,
                     loadProgress: 0,
+                    burgerActive: true,
                     savePrompt: `"${state.query}" is already recorded`
                 }
             }
@@ -64,6 +68,7 @@ const saveQuery = (state = initialState, action) => {
                 return{
                     ...state,
                     loadProgress: 0,
+                    burgerActive: true,
                     savePrompt: "Nothing to save"
                 }
             }
@@ -78,6 +83,7 @@ const saveQuery = (state = initialState, action) => {
                         error: null,
                         loading: false,
                         loadProgress: 0,
+                        burgerActive: true,
                         savedQueries: [...state.savedQueries, state.query],
                         savePrompt: null
                     }
@@ -86,6 +92,7 @@ const saveQuery = (state = initialState, action) => {
         case "QUERY_SAVE_CANCEL": 
             return {
                 ...state,
+                burgerActive: true,
                 savePrompt: null
             }
         case "QUERY_LOAD_SAVED":
@@ -120,7 +127,13 @@ const saveQuery = (state = initialState, action) => {
                 ...state,
                 loading: action.value,
                 loadProgress: 0,
-                error: null
+                error: null,
+                // burgerActive: !state.burgerActive
+            }
+        case "TOGGLE_BURGER":
+            return {
+                ...state,
+                burgerActive: !state.burgerActive
             }
         default: return state
     }

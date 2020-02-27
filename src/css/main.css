@@ -171,8 +171,16 @@ html, body, #root {
   background-color: white;
   cursor: pointer;
   display: inline-block;
-  padding: 0 15px;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .loader-wrapper {
@@ -243,6 +251,7 @@ html, body, #root {
           flex: 1;
   font-weight: 600;
   width: 50%;
+  padding: 0 15px;
 }
 
 .searchBar-buttons-wrapper {
@@ -258,12 +267,6 @@ html, body, #root {
 
 .hamburger {
   display: none;
-  height: 100%;
-  width: 50px;
-}
-
-.hamburger span {
-  width: 100%;
 }
 
 .saveButton-wrapper {
@@ -442,7 +445,12 @@ html, body, #root {
     padding: 10px;
   }
   .hamburger {
-    display: initial;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .button, .searchField-input {
     font-size: 4vw;

@@ -8,9 +8,16 @@ const SearchBar = (props) => {
     const dispatch = useDispatch()
 
     const search = (e) => {
+        let timer = 0
         e.preventDefault()
-        const keyword = document.getElementById("searchField").value
-        dispatch(queryActions.queryRequest(keyword))
+        if(document.getElementById("savedQueries").classList.contains("savedQueries-wrapper_display")){
+            document.getElementById("savedQueries").classList.toggle("savedQueries-wrapper_display")
+            timer = 400
+        }
+        setTimeout(() => {            
+            const keyword = document.getElementById("searchField").value
+            dispatch(queryActions.queryRequest(keyword))
+        }, timer);
     }
 
     return(
