@@ -5,7 +5,8 @@ const initialState = {
     loading: false,
     query: null,
     savedQueries: [],
-    onDisplay: []
+    onDisplay: [],
+    loadProgress: null
 }
 
 const saveQuery = (state = initialState, action) => {
@@ -23,7 +24,6 @@ const saveQuery = (state = initialState, action) => {
                     [action.queryKeyword]: action.payload
                 },
                 error: null,
-                loading: false,
                 query: action.queryKeyword,
                 onDisplay: action.payload
             }
@@ -62,11 +62,30 @@ const saveQuery = (state = initialState, action) => {
                 return {
                     ...state, 
                     onDisplay: state.photos[action.query],
-                    error: null
+                    error: null,
+                    query: action.query
                 }
+        case "IMAGE_LOADING":
+            if(state.loadProgress === state.onDisplay.length-1){
+                return {
+                    ...state,
+                    loadProgress: 0,
+                    loading: false
+                }
+            }
+            return {
+                ...state,
+                loading: true,
+                loadProgress: state.loadProgress+1
+            }
+        case "TOGGLE_MODAL":
+            return {
+                ...state,
+                loading: action.value,
+                error: null
+            }
         default: return state
     }
 }
-
 
 export default saveQuery

@@ -6,9 +6,6 @@ import queryActions from '../redux/actions/query'
 
 const SavedQueries = (props) => {
     const dispatch = useDispatch()
-    console.log("SAVED QUERIES props")
-    console.log(props)
-    console.log("store")
     return(
             <div className="savedQueries-wrapper" id="savedQueries">
                 <div className="savedQueries-results">

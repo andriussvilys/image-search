@@ -31,7 +31,7 @@ $buttonFontSize: 2vw;
 //SEARCH BAR
 .searchBar-wrapper{
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
 }
 .searchField-form{
@@ -46,6 +46,8 @@ $buttonFontSize: 2vw;
     text-transform: uppercase;
     border: 2px solid black;
     padding-left: 3px;
+    background-color: rgb(233, 233, 233);
+    margin-bottom: 5px;
 }
 .searchField-button{
     flex: 1;
@@ -55,9 +57,25 @@ $buttonFontSize: 2vw;
 .searchBar-buttons-wrapper{
     margin-left: 20px;
     flex: 1;
-    border: 1px solid black;
     display: flex;
     height: 50px;
+}
+.hamburger{
+    display: none;
+    height: 100%;
+    width: 50px;
+    span{
+        width: 100%;
+    }
+}
+.saveButton-wrapper{
+    display: flex;
+}
+.saveButton{
+    width: 100%;
+}
+.saveButton-wrapper{
+    margin-left: 3px;
 }
 
 //SEARCH RESULTS
@@ -92,6 +110,36 @@ $buttonFontSize: 2vw;
     margin-bottom: 15px;
     height: auto;
 }
+//MODAL
+.modal-wrapper{
+    height: 50px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(251, 255, 41, 0.69);
+    position: absolute;
+    top: -100%;
+    transition: top 0.2s;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.modal-message_display{
+    top: 0;
+}
+.modal-box{
+    background-color: white;
+    border: 2px solid black;
+    padding: 10px;
+    width: 50%;
+}
+.modal-button{
+    height: 50px;
+    width: 100%;
+    margin-top: 15px;
+}
+
 
 //GALLERY
 .gallery{
@@ -100,20 +148,7 @@ $buttonFontSize: 2vw;
     position: relative;
     overflow-y: auto;
 }
-.gallery-message{
-    height: 50px;
-    width: 100%;
-    height: 100%;
-    background-color: yellow;
-    position: absolute;
-    top: -100%;
-    transition: top 0.2s;
-    z-index: 2;
-    opacity: 0.8;
-}
-.gallery-message_display{
-    top: 0;
-}
+
 .searchResults{
     display: flex;
     flex-wrap: wrap;
@@ -155,6 +190,12 @@ $buttonFontSize: 2vw;
 
 
 @media screen and (max-width: 768px){
+    .App{
+        padding: 10px;
+    }
+    .hamburger{
+        display: initial;
+    }
     .button, .searchField-input{
         font-size: 4vw;
     }
@@ -162,7 +203,7 @@ $buttonFontSize: 2vw;
         margin-bottom: 5px;
     }
     .searchBar-buttons-wrapper{
-        margin-left: 3px;
+        margin: 0 0 0 3px;
     }
     .searchField-button{
         width: auto;
@@ -185,6 +226,7 @@ $buttonFontSize: 2vw;
         position: absolute;
         right: -100%;
         padding: 5px;
+        min-width: 200px;
     }
     .savedQueries-wrapper_display{
         right: 0;
@@ -193,7 +235,14 @@ $buttonFontSize: 2vw;
 }
 
 @media screen and (max-width: 468px){
+    .App{
+        padding: 5px;
+    }
     .searchBar-buttons-wrapper{
+        flex: 1 1 100%;
         margin: 5px 0 0 0;
+    }
+    .searchField-button{
+        margin-left: 0;
     }
 }

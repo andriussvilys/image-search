@@ -8,7 +8,6 @@ secret: "RhWCrY76VVhLkjHkrLDtkSYGgnaL3pb19YdHv2OveBw"
 });
 
 const queryRequest = (value) => {
-    console.log("query request runs")
     return dispatch => {
             dispatch({
                 type: "QUERY_LOADING",

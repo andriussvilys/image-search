@@ -22,7 +22,7 @@ const SearchBar = (props) => {
                         type="search" 
                         name="" 
                         defaultValue="" 
-                        onSubmit={e => alert(e)}
+                        placeholder="enter your query"
                     />
                 <div className="searchBar-buttons-wrapper">
                     <input 
