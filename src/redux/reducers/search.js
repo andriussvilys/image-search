@@ -7,7 +7,7 @@ const initialState = {
     savedQueries: [],
     onDisplay: [],
     loadProgress: 0,
-    savePrompt: null
+    savePrompt: null,
 }
 
 const saveQuery = (state = initialState, action) => {

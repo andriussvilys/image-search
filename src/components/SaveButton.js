@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import queryActions from '../redux/actions/query'
+import Hamburger from './Hamburger'
 
 const SaveButton = (props) => {
     const mobile = () => {
@@ -10,6 +11,8 @@ const SaveButton = (props) => {
         else return false;
     }
     const dispatch = useDispatch()
+
+    let burger = false
 
     // window.addEventListener("resize", () => {
     //     console.log("resize")
@@ -31,12 +34,9 @@ const SaveButton = (props) => {
                 <span>SAVE</span>
             </button>
 
-            <button 
-                className="hamburger"
-                onClick={(e) => {e.preventDefault(); document.getElementById("savedQueries").classList.toggle("savedQueries-wrapper_display")}}    
-            >
-                    <span role="img" aria-label="hamburger icon">🍔</span>
-            </button>
+            <div className="hamburger">
+                <Hamburger />
+            </div>
 
         </div>
     )

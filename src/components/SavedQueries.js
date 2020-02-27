@@ -15,7 +15,14 @@ const SavedQueries = (props) => {
                     message={props.queries.savePrompt}
                 >
                         {
-                            !props.queries.savedQueries.includes(props.queries.query) ? 
+                            props.queries.savedQueries.includes(props.queries.query) || !props.queries.query ? 
+                            <button className="button modal-button"
+                                onClick={(e) => {
+                                    dispatch(queryActions.saveQueryCancel())
+                                }}
+                            >
+                                OKAY
+                            </button>:
 
                             <React.Fragment>
                                 <button className="button modal-button"
@@ -33,15 +40,7 @@ const SavedQueries = (props) => {
                                 >
                                     NO
                                 </button> 
-                                </React.Fragment> :
-                                <button className="button modal-button"
-                                    onClick={(e) => {
-                                        dispatch(queryActions.saveQueryCancel())
-                                    }}
-                                >
-                                    THANKS
-                                </button>
-
+                                </React.Fragment>
                         }
 
                 </ErrorModal>
