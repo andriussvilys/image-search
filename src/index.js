@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 //store setup
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import combinedReducers from './redux/reducers/combinedReducers';
 import thunk from 'redux-thunk'
 
@@ -17,10 +17,7 @@ const initialState = {
 const store = createStore(
     combinedReducers, 
     initialState,
-    compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    applyMiddleware(thunk)
 )
 
 ReactDOM.render(
