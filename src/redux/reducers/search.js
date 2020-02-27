@@ -101,7 +101,7 @@ const saveQuery = (state = initialState, action) => {
                     onDisplay: state.photos[action.query],
                     error: null,
                     loadProgress: 0,
-                    query: action.query
+                    query: action.query,
                 }
         case "IMAGE_LOADING":
             console.log(state.loadProgress)
