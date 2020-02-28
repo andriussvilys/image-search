@@ -17,6 +17,7 @@ This app is responsive and has slightly different layouts for desktop, tablet (<
 Clone this repo (don't forget to npm init :P) and see the code for yourself!
 OR
 checkout out the production build live on gitHub pages
+[https://andriussvilys.github.io/image-search/](#anchors-in-markdown)
 (#https://andriussvilys.github.io/image-search/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
