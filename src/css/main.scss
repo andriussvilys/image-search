@@ -16,7 +16,7 @@ html, body, #root{
 //VARIABLES
 $buttonHeight: 50px;
 $buttonFontSize: 2vw;
-//COMMON CLASSES
+//COMMON CLASSES______________________________________________________________
 .button{
     height: $buttonHeight;
     font-size: $buttonFontSize;
@@ -33,7 +33,7 @@ $buttonFontSize: 2vw;
 .clicked{
     transform: scale(0.95);
 }
-//LOADER 
+//LOADER-PROGRESS BAR___________________________________________________________
 .loader-wrapper{
     width: 100%;
     display: flex;
@@ -56,9 +56,8 @@ $buttonFontSize: 2vw;
     position: absolute;
     height: 100%;
     background-color: blue;
-    // transition: 0.4s width;
 }
-//SEARCH BAR
+//SEARCH BAR______________________________________________________________________________
 .searchBar-wrapper{
     display: flex;
     margin-bottom: 15px;
@@ -91,9 +90,6 @@ $buttonFontSize: 2vw;
     display: flex;
     height: 50px;
 }
-.hamburger{
-    display: none;
-}
 .saveButton-wrapper{
     display: flex;
 }
@@ -103,16 +99,10 @@ $buttonFontSize: 2vw;
 .saveButton-wrapper{
     margin-left: 3px;
 }
-
-//SEARCH RESULTS
-.main{
-    overflow: hidden;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
+.hamburger{
+    display: none;
 }
-//SAVED QUERIES
+//SAVED QUERIES____________________________________________________________________
 .savedQueries-wrapper{
     height: 100%;
     flex: 1;
@@ -147,7 +137,7 @@ $buttonFontSize: 2vw;
     font-size: 12px;
     color: rgb(180, 180, 180);
 }
-//MODAL
+//MODAL_____________________________________________________________________________
 .modal-wrapper{
     height: 50px;
     width: 100%;
@@ -179,11 +169,18 @@ $buttonFontSize: 2vw;
     width: 100%;
     margin-top: 15px;
 }
-//SAVE MODAL
+
 .savedQueries-modal{
     border-radius: 4vw;
 }
-
+//SEARCH RESULTS_______________________________________________________________
+.main{
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
 //GALLERY
 .gallery{
     border: 1px solid black;
@@ -238,6 +235,7 @@ $buttonFontSize: 2vw;
     .App{
         padding: 10px;
     }
+    //SEARCHBAR_______________________________
     .hamburger{
         display: flex;
         align-items: center;
@@ -259,17 +257,7 @@ $buttonFontSize: 2vw;
         width: initial;
         flex: 2;
     }
-    .savedQueries-button{
-        min-height: 40px;
-        margin-bottom: 5px;
-    }
-    .gallery{
-        width: 100%;
-    }
-    .photoPreview-container{
-        flex: 1 1 33%;
-        max-width: 32%;
-    }
+    //SAVED QUERIES______________________________________________
     .savedQueries-wrapper{
         width: 50%;
         transition: 0.4s right;
@@ -278,16 +266,28 @@ $buttonFontSize: 2vw;
         padding: 5px;
         min-width: 200px;
     }
+    .savedQueries-button{
+        min-height: 40px;
+        margin-bottom: 5px;
+    }
     .savedQueries-wrapper_display{
         right: 0;
     }
-
+    //SEARCH RESULTS__________________________________________
+    .gallery{
+        width: 100%;
+    }
+    .photoPreview-container{
+        flex: 1 1 33%;
+        max-width: 32%;
+    }
 }
 
 @media screen and (max-width: 468px){
     .App{
         padding: 5px;
     }
+    //SEARCH BAR________________________________________________
     .searchBar-buttons-wrapper{
         flex: 1 1 100%;
         margin: 0;
@@ -295,6 +295,7 @@ $buttonFontSize: 2vw;
     .searchField-button{
         margin-left: 0;
     }
+    //SEARCH RESULTS________________________________________________
     .photoPreview-container{
         flex: 1 1 48%;
         max-width: 48%;
