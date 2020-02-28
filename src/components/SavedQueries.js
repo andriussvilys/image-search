@@ -46,7 +46,7 @@ const SavedQueries = (props) => {
                 </ErrorModal>
                     <ul>
                         {
-                            props.queries.savedQueries ?
+                            props.queries.savedQueries.length > 0 ?
                                 props.queries.savedQueries.map(query => {
                                     return  <li key={`savedQuer-${query}`}>
                                                 <button
@@ -59,7 +59,7 @@ const SavedQueries = (props) => {
                                                 </button>
                                             </li>
                                 }) :
-                                null
+                                <li className="saveQueries-message"><span>You haven't saved any queries yet.</span></li>
                         }
                     </ul>
                 </div>
