@@ -88,7 +88,7 @@ const saveQuery = (state = initialState, action) => {
                         savePrompt: null
                     }
                 }
-
+                break
         case "QUERY_SAVE_CANCEL": 
             return {
                 ...state,

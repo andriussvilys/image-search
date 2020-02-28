@@ -78,10 +78,6 @@ const loadSaved = (query) => {
     }
 }
 
-const updateQuery = () => {
-
-}
-
 const queryActions = {
     queryRequest, saveQueryRequest, saveQueryCancel, saveQueryConfirm, loadSaved
 }

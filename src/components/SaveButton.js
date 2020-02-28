@@ -12,13 +12,6 @@ const SaveButton = (props) => {
     }
     const dispatch = useDispatch()
 
-    let burger = false
-
-    // window.addEventListener("resize", () => {
-    //     console.log("resize")
-    //     mobile = document.documentElement.clientWidth < 768 ? true : false;
-    //     })
-
     return(
         <div className="saveButton-wrapper">
             <button 
