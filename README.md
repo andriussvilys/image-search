@@ -14,11 +14,10 @@ The search progress is split into two episodes:
 This app is responsive and has slightly different layouts for desktop, tablet (<768px) and mobile (<468px) screens. The favourites/saved queries block becomes hidden on screens with width <768px and a hamburger icon appears next to "SAVE" button thus introducing a more ergonomic, familiar and delightful interface. Modals pop up within appropriate blocks, overlaying contents inside with a stylish and fun yellow colour immedialy attracting user's attention. 
 
 
-Clone this repo (don't forget to npm init :P) and see the code for yourself!
+###Clone this repo (don't forget to npm init :P) and see the code for yourself!
 OR
 checkout out the production build live on gitHub pages
-[https://andriussvilys.github.io/image-search/](#anchors-in-markdown)
-(#https://andriussvilys.github.io/image-search/)
+https://andriussvilys.github.io/image-search/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
