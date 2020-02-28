@@ -1,17 +1,14 @@
 
-const initialState = {
-    photos: {},
-    error: null,
-    loading: false,
-    query: null,
-    savedQueries: [],
-    onDisplay: [],
-    loadProgress: 0,
-    savePrompt: null,
-    burgerActive: false
+import initialState from '../initialState'
+
+const checkMobile = () => {
+    if(document.documentElement.clientWidth < 769){
+        return true
+    }
+    else{return false}
 }
 
-const saveQuery = (state = initialState, action) => {
+export const search = (state = initialState, action) => {
     switch(action.type){
         case "QUERY_LOADING":
             if(action.queryKeyword === state.query){
@@ -48,65 +45,62 @@ const saveQuery = (state = initialState, action) => {
                 loadProgress: 0,
                 onDisplay: []
             }
-        case "QUERY_SAVE_REQUEST":
-            if(!state.savedQueries.includes(state.query) && state.onDisplay.length > 0){
-                return {
-                    ...state, 
-                    burgerActive: true,
-                    savePrompt: `Do you want to save "${state.query}" to favourites?`
-                }
-            }
-            else if(state.savedQueries.includes(state.query)){
-                return{
-                    ...state,
-                    loadProgress: 0,
-                    burgerActive: true,
-                    savePrompt: `"${state.query}" is already recorded`
-                }
-            }
-            else{
-                return{
-                    ...state,
-                    loadProgress: 0,
-                    burgerActive: true,
-                    savePrompt: "Nothing to save"
-                }
-            }
-        case "QUERY_SAVE_CONFIRM":
-                if(!state.savedQueries.includes(state.query) && state.onDisplay.length > 0){
-                    return {
-                        ...state, 
-                        photos: {
-                            ...state.photos,
-                            [action.queryKeyword]: action.payload
-                        },
-                        error: null,
-                        loading: false,
-                        loadProgress: 0,
-                        burgerActive: true,
-                        savedQueries: [...state.savedQueries, state.query],
-                        savePrompt: null
-                    }
-                }
-                break
-        case "QUERY_SAVE_CANCEL": 
-            return {
-                ...state,
-                burgerActive: true,
-                savePrompt: null
-            }
-        case "QUERY_LOAD_SAVED":
-                return {
-                    ...state, 
-                    onDisplay: state.photos[action.query],
-                    error: null,
-                    loadProgress: 0,
-                    query: action.query,
-                }
+        // case "QUERY_SAVE_REQUEST":
+        //     if(!state.savedQueries.indexOf(state.query) >= 0 && state.onDisplay.length > 0){
+        //         return {
+        //             ...state, 
+        //             burgerActive: true,
+        //             savePrompt: `Do you want to save "${state.query}" to favourites?`
+        //         }
+        //     }
+        //     else if(state.savedQueries.indexOf(state.query) >= 0){
+        //         return{
+        //             ...state,
+        //             loadProgress: 0,
+        //             burgerActive: true,
+        //             savePrompt: `"${state.query}" is already recorded`
+        //         }
+        //     }
+        //     else{
+        //         return{
+        //             ...state,
+        //             loadProgress: 0,
+        //             burgerActive: true,
+        //             savePrompt: "Nothing to save"
+        //         }
+        //     }
+        // case "QUERY_SAVE_CONFIRM":
+        //         if(!state.savedQueries.indexOf(state.query) >=0 && state.onDisplay.length > 0){
+        //             return {
+        //                 ...state, 
+        //                 photos: {
+        //                     ...state.photos,
+        //                     [action.queryKeyword]: action.payload
+        //                 },
+        //                 error: null,
+        //                 loading: false,
+        //                 loadProgress: 0,
+        //                 burgerActive: true,
+        //                 savedQueries: [...state.savedQueries, state.query],
+        //                 savePrompt: null
+        //             }
+        //         }
+        //         break
+        // case "QUERY_SAVE_CANCEL": 
+        //     return {
+        //         ...state,
+        //         burgerActive: true,
+        //         savePrompt: null
+        //     }
+        // case "QUERY_LOAD_SAVED":
+        //         return {
+        //             ...state, 
+        //             onDisplay: state.photos[action.query],
+        //             error: null,
+        //             loadProgress: 0,
+        //             query: action.query,
+        //         }
         case "IMAGE_LOADING":
-            console.log(state.loadProgress)
-            console.log(state.onDisplay.length-1)
-            console.log(state.loadProgress === state.onDisplay.length-1)
             if(state.loadProgress === state.onDisplay.length-1){                   
                 return {
                     ...state,
@@ -115,7 +109,6 @@ const saveQuery = (state = initialState, action) => {
                 }       
             }
             else{
-                console.log("ELSE")
                 return {
                     ...state,
                     loading: true,
@@ -135,8 +128,73 @@ const saveQuery = (state = initialState, action) => {
                 ...state,
                 burgerActive: !state.burgerActive
             }
+        case "QUERY_NEW":
+            return {
+                ...state,
+                query: action.value
+            }
         default: return state
     }
 }
 
-export default saveQuery
+export const savedQuery = (state = initialState, action) => {
+    switch(action.type){
+        case "QUERY_SAVE_REQUEST":
+            if(state.savedQueries.indexOf(state.query) < 0 && state.onDisplay.length > 0){
+                return {
+                    ...state, 
+                    burgerActive: checkMobile() ? true : false,
+                    savePrompt: `Do you want to save "${state.query}" to favourites?`
+                }
+            }
+            else if(state.savedQueries.indexOf(state.query) >= 0){
+                return{
+                    ...state,
+                    loadProgress: 0,
+                    burgerActive: checkMobile() ? true : false,
+                    savePrompt: `"${state.query}" is already recorded`
+                }
+            }
+            else{
+                return{
+                    ...state,
+                    loadProgress: 0,
+                    burgerActive: checkMobile() ? true : false,
+                    savePrompt: "Nothing to save"
+                }
+            }
+        case "QUERY_SAVE_CONFIRM":
+                if(!state.savedQueries.indexOf(state.query) >=0 && state.onDisplay.length > 0){
+                    return {
+                        ...state, 
+                        photos: {
+                            ...state.photos,
+                            [action.queryKeyword]: action.payload
+                        },
+                        error: null,
+                        loading: false,
+                        loadProgress: 0,
+                        burgerActive: checkMobile() ? true : false,
+                        savedQueries: [...state.savedQueries, state.query],
+                        savePrompt: null
+                    }
+                }
+                break
+        case "QUERY_SAVE_CANCEL": 
+            return {
+                ...state,
+                burgerActive: checkMobile() ? true : false,
+                savePrompt: null
+            }
+        case "QUERY_LOAD_SAVED":
+                return {
+                    ...state, 
+                    onDisplay: state.photos[action.query],
+                    error: null,
+                    loadProgress: 0,
+                    query: action.query,
+                }
+        default: return state
+    }
+}
+

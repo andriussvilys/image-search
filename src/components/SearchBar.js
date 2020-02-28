@@ -1,10 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 
 import queryActions from '../redux/actions/query'
 
 const SearchBar = (props) => {
-
     const dispatch = useDispatch()
 
     const search = (e) => {
@@ -28,8 +27,11 @@ const SearchBar = (props) => {
                         id="searchField" 
                         type="search" 
                         name="" 
-                        defaultValue="" 
+                        value={props.photos.query}
                         placeholder="enter your query"
+                        onChange={e => {
+                            dispatch(queryActions.newQuery(e.target.value))
+                        }}
                     />
                 <div className="searchBar-buttons-wrapper">
                     <input 
@@ -38,6 +40,8 @@ const SearchBar = (props) => {
                         type="submit" 
                         value="Search" 
                         onClick={(e) => search(e)}
+                        onMouseDown={e => e.target.classList.add('clicked')}
+                        onMouseUp={e => e.target.classList.remove('clicked')}
                     />
                     {props.children}
                 </div>
@@ -46,4 +50,8 @@ const SearchBar = (props) => {
     )
 }
 
-export default SearchBar
+const mapStateToProps = state => ({
+    photos: state
+})
+
+export default connect(mapStateToProps, {})(SearchBar) 

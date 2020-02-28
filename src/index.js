@@ -1,9 +1,13 @@
 import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-//store setup
+import initialState from './redux/initialState'
+
 import { createStore, applyMiddleware } from 'redux';
 import combinedReducers from './redux/reducers/combinedReducers';
 import thunk from 'redux-thunk'
@@ -11,9 +15,6 @@ import thunk from 'redux-thunk'
 import './css/main.css';
 import App from './App';
 
-
-const initialState = {
-}
 
 const store = createStore(
     combinedReducers, 

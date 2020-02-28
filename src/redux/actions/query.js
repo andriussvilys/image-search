@@ -1,4 +1,5 @@
 import { toJson } from 'unsplash-js'
+import savedQueries from './savedQueries'
 
 const Unsplash = require('unsplash-js').default;
 
@@ -46,40 +47,19 @@ const queryRequest = (value) => {
                   })
             }
     }
-
-const saveQueryRequest = () => {
+const newQuery = (value) => {
     return dispatch => {
         dispatch({
-            type: "QUERY_SAVE_REQUEST",
-        })
-    }
-}
-const saveQueryCancel = () => {
-    return dispatch => {
-        dispatch({
-            type: "QUERY_SAVE_CANCEL",
-        })
-    }
-}
-const saveQueryConfirm = () => {
-    return dispatch => {
-        dispatch({
-            type: "QUERY_SAVE_CONFIRM",
-        })
-    }
-}
-
-const loadSaved = (query) => {
-    return dispatch => {
-        dispatch({
-            type: "QUERY_LOAD_SAVED",
-            query: query
+            type: "QUERY_NEW",
+            value: value
         })
     }
 }
 
 const queryActions = {
-    queryRequest, saveQueryRequest, saveQueryCancel, saveQueryConfirm, loadSaved
+    queryRequest, 
+    savedQueries,
+    newQuery
 }
 
 export default queryActions

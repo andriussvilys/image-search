@@ -15,11 +15,13 @@ const SavedQueries = (props) => {
                     message={props.queries.savePrompt}
                 >
                         {
-                            props.queries.savedQueries.includes(props.queries.query) || !props.queries.query ? 
+                            props.queries.savedQueries.indexOf(props.queries.query) >= 0 || !props.queries.query || props.queries.onDisplay.length <= 0 ? 
                             <button className="button modal-button"
                                 onClick={(e) => {
-                                    dispatch(queryActions.saveQueryCancel())
+                                    dispatch(queryActions.savedQueries.saveQueryCancel())
                                 }}
+                                onMouseDown={e => e.target.classList.add('clicked')}
+                                onMouseUp={e => e.target.classList.remove('clicked')}
                             >
                                 OKAY
                             </button>:
@@ -27,16 +29,20 @@ const SavedQueries = (props) => {
                             <React.Fragment>
                                 <button className="button modal-button"
                                     onClick={(e) => {
-                                        dispatch(queryActions.saveQueryConfirm())
+                                        dispatch(queryActions.savedQueries.saveQueryConfirm())
                                     }}
+                                    onMouseDown={e => e.target.classList.add('clicked')}
+                                    onMouseUp={e => e.target.classList.remove('clicked')}
                                 >
                                     YES
                                 </button>   
 
                                 <button className="button modal-button"
                                     onClick={(e) => {
-                                        dispatch(queryActions.saveQueryCancel())
+                                        dispatch(queryActions.savedQueries.saveQueryCancel())
                                     }}
+                                    onMouseDown={e => e.target.classList.add('clicked')}
+                                    onMouseUp={e => e.target.classList.remove('clicked')}
                                 >
                                     NO
                                 </button> 
@@ -52,8 +58,10 @@ const SavedQueries = (props) => {
                                                 <button
                                                     className={"savedQueries-button button"}
                                                     onClick={() => {
-                                                        dispatch(queryActions.loadSaved(query))
+                                                        dispatch(queryActions.savedQueries.loadSaved(query))
                                                     }}
+                                                    onMouseDown={e => e.target.classList.add('clicked')}
+                                                    onMouseUp={e => e.target.classList.remove('clicked')}
                                                 >
                                                     {query}
                                                 </button>
@@ -68,7 +76,7 @@ const SavedQueries = (props) => {
 }
 
 const mapStateToProps = state => ({
-    queries: state.queries
+    queries: state
 })
 
 export default connect(mapStateToProps, {})(SavedQueries) 

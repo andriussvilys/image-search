@@ -21,7 +21,7 @@ const Loader = (props) => {
 }
 
 const mapStateToProps = state => ({
-    photos: state.queries
+    photos: state
 })
 
 export default connect(mapStateToProps, {})(Loader) 

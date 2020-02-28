@@ -5,8 +5,6 @@ import toggleBurger from '../redux/actions/toggleBurger'
  
 const Hamburger = (props) => {
     const dispatch = useDispatch()
-    console.log("BURGER props")
-    console.log(props)
     let active = props.photos.burgerActive
     return (
       <Burger
@@ -25,7 +23,7 @@ const Hamburger = (props) => {
   }
 
   const mapStateToProps = state => ({
-    photos: state.queries
+    photos: state
 })
 
 export default connect(mapStateToProps, {})(Hamburger) 

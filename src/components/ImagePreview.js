@@ -8,7 +8,6 @@ const ImagePreview = (props) => {
     return(
         <div className="photoPreview-container">
             <img src={props.photo.urls.thumb} alt={props.photo.description} onLoad={() =>{
-                console.log(`preview index ${props.index}`)
                 dispatch(imageLoad())
                 }}/>
             <div className="photoPreview-attribution_wrapper">

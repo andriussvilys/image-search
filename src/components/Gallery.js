@@ -20,6 +20,8 @@ const Gallery = (props) => {
                         onClick={(e) => {
                             dispatch(toggleModal(false))
                         }}
+                        onMouseDown={e => e.target.classList.add('clicked')}
+                        onMouseUp={e => e.target.classList.remove('clicked')}
                     >OKAY
                     </button>    
                 </ErrorModal>
@@ -41,7 +43,7 @@ const Gallery = (props) => {
 }
 
 const mapStateToProps = state => ({
-    photos: state.queries
+    photos: state
 })
 
 export default connect(mapStateToProps, {})(Gallery) 

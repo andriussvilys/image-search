@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import queryActions from '../redux/actions/query'
+// import savedQueries from '../redux/actions/savedQueries'
 import Hamburger from './Hamburger'
 
 const SaveButton = (props) => {
@@ -13,7 +14,8 @@ const SaveButton = (props) => {
     const dispatch = useDispatch()
 
     return(
-        <div className="saveButton-wrapper">
+        <div className="saveButton-wrapper"
+        >
             <button 
                 className={`searchField-button button saveButton ${props.className}`}
                 onClick={(e) => {
@@ -21,10 +23,12 @@ const SaveButton = (props) => {
                         if(mobile()){
                             document.getElementById("savedQueries").classList.add("savedQueries-wrapper_display")
                         }
-                    dispatch(queryActions.saveQueryRequest())
+                    dispatch(queryActions.savedQueries.saveQueryRequest())
                 }}
+                onMouseDown={e => e.target.classList.add('clicked')}
+                onMouseUp={e => e.target.classList.remove('clicked')}
             >
-                <span>SAVE</span>
+                SAVE
             </button>
 
             <div className="hamburger">

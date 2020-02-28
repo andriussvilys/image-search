@@ -1,8 +1,6 @@
-import search from './search'
-import { combineReducers } from 'redux'
+import {search, savedQuery} from './search'
+import reduceReducers from 'reduce-reducers'
+import initialState from '../initialState'
 
-const combined = combineReducers({
-    "queries": search
-})
-
+const combined = reduceReducers(initialState, search, savedQuery)
 export default combined

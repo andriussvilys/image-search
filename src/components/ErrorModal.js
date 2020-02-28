@@ -2,8 +2,6 @@ import React from 'react'
 import Loader from './Loader'
 
 const ErrorModal = (props) => {
-    console.log("ERORR MODAL")
-    console.log(props)
     return(
         <div id="errorModal" className={`modal-wrapper ${props.customClass ? props.customClass : ""} ${props.message || props.loading ? "modal-message_display" : ""}`}>
             {

@@ -30,6 +30,9 @@ $buttonFontSize: 2vw;
     align-items: center;
     justify-content: center;
 }
+.clicked{
+    transform: scale(0.95);
+}
 //LOADER 
 .loader-wrapper{
     width: 100%;
@@ -293,7 +296,7 @@ $buttonFontSize: 2vw;
         margin-left: 0;
     }
     .photoPreview-container{
-        flex: 1 1 100%;
-        max-width: 100%;
+        flex: 1 1 48%;
+        max-width: 48%;
     }
 }
