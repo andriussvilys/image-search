@@ -1,3 +1,12 @@
+IMAGE SEARCH APP
+
+This app utilizes unsplash API in order to request, retrieve and render images onscreen. 
+
+A user may choose to save their favourite search results by clicking "SAVE" button in order to view these images at a later time. 
+The app uses a REDUX store and collects <i>every</i> query a user submits, so if the query is repeated, even if it is not saved, it will not send a request to the API and instead load it from the store thus saving bandwith and API load. Saved queries are store in a simple array list.
+
+This app is responsive and has slightly different layouts for desktop, tablet (<768px) and mobile (<468px) screens. The favourites/saved queries block becomes hidden on screens with width <768px and a hamburger icon appears next to "SAVE" button thus introducing a more ergonomic, familiar and delightful interface. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
