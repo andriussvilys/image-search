@@ -8,8 +8,11 @@ accessKey: "G30dGv3bmlBVahi1AuWqaLxS7g7f4x0bABqwPhd8hHs",
 secret: "RhWCrY76VVhLkjHkrLDtkSYGgnaL3pb19YdHv2OveBw"
 });
 
-const queryRequest = (value) => {
+const queryRequest = (value, state) => {
     return dispatch => {
+        if(Object.keys(state.photos).indexOf(value) >= 0){
+            return savedQueries.loadSaved(value)
+        }
             dispatch({
                 type: "QUERY_LOADING",
                 queryKeyword: value,

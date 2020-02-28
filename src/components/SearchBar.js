@@ -6,7 +6,7 @@ import queryActions from '../redux/actions/query'
 const SearchBar = (props) => {
     const dispatch = useDispatch()
 
-    const search = (e) => {
+    const search = (e, state) => {
         let timer = 0
         e.preventDefault()
         if(document.getElementById("savedQueries").classList.contains("savedQueries-wrapper_display")){
@@ -15,7 +15,7 @@ const SearchBar = (props) => {
         }
         setTimeout(() => {            
             const keyword = document.getElementById("searchField").value
-            dispatch(queryActions.queryRequest(keyword))
+            dispatch(queryActions.queryRequest(keyword, state))
         }, timer);
     }
 
@@ -39,7 +39,7 @@ const SearchBar = (props) => {
                         htmlFor="searchField" 
                         type="submit" 
                         value="Search" 
-                        onClick={(e) => search(e)}
+                        onClick={(e) => search(e, props.photos)}
                         onMouseDown={e => e.target.classList.add('clicked')}
                         onMouseUp={e => e.target.classList.remove('clicked')}
                     />
