@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const Loader = (props) => {
-    let progress = props.photos.loadProgress ? props.photos.loadProgress : 0
-    let length = props.photos.onDisplay && props.photos.onDisplay > 0 ? props.photos.onDisplay.length : 10
+    let progress = props.photos.loadProgress
+    let length = props.photos.onDisplay.length
     return(
         <div className="loader-wrapper modal-box">
             <div className="loader-bar">

@@ -7,7 +7,8 @@ const initialState = {
     onDisplay: [],
     loadProgress: 0,
     savePrompt: null,
-    burgerActive: false
+    burgerActive: false,
+    allIds: []
 }
 
 export default initialState

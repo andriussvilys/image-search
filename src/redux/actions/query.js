@@ -11,13 +11,17 @@ secret: "RhWCrY76VVhLkjHkrLDtkSYGgnaL3pb19YdHv2OveBw"
 const queryRequest = (value, state) => {
     return dispatch => {
         if(Object.keys(state.photos).indexOf(value) >= 0){
-            return savedQueries.loadSaved(value)
-        }
+            return dispatch({
+                    type: "QUERY_LOAD_SAVED",
+                    query: value
+                })
+            }
             dispatch({
                 type: "QUERY_LOADING",
                 queryKeyword: value,
                 error: null,
-                loading: true
+                loading: true,
+                loadProgress: 0
             })
             return unsplash.search.photos(value, 1, 10, { orientation: "portrait" })
                   .then(toJson)
@@ -27,7 +31,8 @@ const queryRequest = (value, state) => {
                             type: "QUERY_SUCCESS",
                             payload: res.results,
                             queryKeyword: value,
-                            error: null
+                            error: null,
+                            loadProgress: 0
                         })
                     }
                     else{
@@ -35,7 +40,8 @@ const queryRequest = (value, state) => {
                             type: "QUERY_FAILURE",
                             payload: res.photos,
                             queryKeyword: value,
-                            error: "Your query returned no results. Please try a different keyword"
+                            error: "Your query returned no results. Please try a different keyword",
+                            loadProgress: 0
                         })
                     }
                   })
@@ -44,7 +50,8 @@ const queryRequest = (value, state) => {
                         dispatch({
                           type: "QUERY_FAILURE",
                           queryKeyword: value,
-                          error: "Your query returned no results. Please try a different keyword"
+                          error: "Your query returned no results. Please try a different keyword",
+                          loadProgress: 0
                       })
                     )
                   })

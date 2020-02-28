@@ -13,8 +13,8 @@ const SearchBar = (props) => {
             document.getElementById("savedQueries").classList.toggle("savedQueries-wrapper_display")
             timer = 400
         }
+        const keyword = document.getElementById("searchField").value
         setTimeout(() => {            
-            const keyword = document.getElementById("searchField").value
             dispatch(queryActions.queryRequest(keyword, state))
         }, timer);
     }

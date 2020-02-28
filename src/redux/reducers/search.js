@@ -11,8 +11,12 @@ const checkMobile = () => {
 export const search = (state = initialState, action) => {
     switch(action.type){
         case "QUERY_LOADING":
-            if(action.queryKeyword === state.query){
-                return state
+            if(Object.keys(state.photos).indexOf(action.queryKeyword) > -1){
+                return {...state,
+                    onDisplay: state.photos[action.queryKeyword],
+                    burgerActive: false,
+                    loadProgress: 0
+                }
             }
             return {
                 ...state, 
@@ -21,6 +25,9 @@ export const search = (state = initialState, action) => {
                 loadProgress: 0
             }
         case "QUERY_SUCCESS":
+                // const newIds = action.payload.map(photo => photo.id)
+                // let combined = new Set([...state.allIds, ...newIds])
+                // combined = Array.from(combined)
             return {
                 ...state, 
                 photos: {
@@ -30,7 +37,8 @@ export const search = (state = initialState, action) => {
                 error: null,
                 query: action.queryKeyword,
                 loadProgress: 0,
-                onDisplay: action.payload
+                onDisplay: action.payload,
+                // allIds: combined
             }
         case "QUERY_FAILURE":
             return {
@@ -45,83 +53,24 @@ export const search = (state = initialState, action) => {
                 loadProgress: 0,
                 onDisplay: []
             }
-        // case "QUERY_SAVE_REQUEST":
-        //     if(!state.savedQueries.indexOf(state.query) >= 0 && state.onDisplay.length > 0){
-        //         return {
-        //             ...state, 
-        //             burgerActive: true,
-        //             savePrompt: `Do you want to save "${state.query}" to favourites?`
-        //         }
-        //     }
-        //     else if(state.savedQueries.indexOf(state.query) >= 0){
-        //         return{
-        //             ...state,
-        //             loadProgress: 0,
-        //             burgerActive: true,
-        //             savePrompt: `"${state.query}" is already recorded`
-        //         }
-        //     }
-        //     else{
-        //         return{
-        //             ...state,
-        //             loadProgress: 0,
-        //             burgerActive: true,
-        //             savePrompt: "Nothing to save"
-        //         }
-        //     }
-        // case "QUERY_SAVE_CONFIRM":
-        //         if(!state.savedQueries.indexOf(state.query) >=0 && state.onDisplay.length > 0){
-        //             return {
-        //                 ...state, 
-        //                 photos: {
-        //                     ...state.photos,
-        //                     [action.queryKeyword]: action.payload
-        //                 },
-        //                 error: null,
-        //                 loading: false,
-        //                 loadProgress: 0,
-        //                 burgerActive: true,
-        //                 savedQueries: [...state.savedQueries, state.query],
-        //                 savePrompt: null
-        //             }
-        //         }
-        //         break
-        // case "QUERY_SAVE_CANCEL": 
-        //     return {
-        //         ...state,
-        //         burgerActive: true,
-        //         savePrompt: null
-        //     }
-        // case "QUERY_LOAD_SAVED":
-        //         return {
-        //             ...state, 
-        //             onDisplay: state.photos[action.query],
-        //             error: null,
-        //             loadProgress: 0,
-        //             query: action.query,
-        //         }
         case "IMAGE_LOADING":
-            if(state.loadProgress === state.onDisplay.length-1){                   
-                return {
-                    ...state,
-                    loadProgress: state.loadProgress+1,
-                    loading: false
-                }       
+            let newState = {...state,
+                loading: true,
+                allIds: [...state.allIds, action.id]
             }
-            else{
-                return {
-                    ...state,
-                    loading: true,
-                    loadProgress: state.loadProgress+1
-                }
+            newState.loadProgress = state.loadProgress+1
+            if(newState.loadProgress === state.onDisplay.length){
+                newState.loadProgress = 0
+                newState.loading = false
             }
+            
+            return newState
         case "TOGGLE_MODAL":
             return {
                 ...state,
                 loading: action.value,
                 loadProgress: 0,
                 error: null,
-                // burgerActive: !state.burgerActive
             }
         case "TOGGLE_BURGER":
             return {
@@ -131,7 +80,8 @@ export const search = (state = initialState, action) => {
         case "QUERY_NEW":
             return {
                 ...state,
-                query: action.value
+                query: action.value,
+                loadProgress: 0
             }
         default: return state
     }

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 
 import initialState from './redux/initialState'
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import combinedReducers from './redux/reducers/combinedReducers';
 import thunk from 'redux-thunk'
 
@@ -19,7 +19,10 @@ import App from './App';
 const store = createStore(
     combinedReducers, 
     initialState,
-    applyMiddleware(thunk)
+    compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
 )
 
 ReactDOM.render(
